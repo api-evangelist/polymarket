@@ -1,0 +1,152 @@
+aid: polymarket
+url: https://raw.githubusercontent.com/api-evangelist/polymarket/refs/heads/main/apis.yml
+name: Polymarket
+kind: company
+description: >-
+  Polymarket is a decentralized prediction-market platform built on Polygon
+  where users buy and sell binary outcome shares in real-world events.
+  Settlement is on-chain via the UMA optimistic oracle, while order matching
+  runs through a hybrid central-limit order book (CLOB). Developer surface
+  includes the CLOB API for order placement and market data, the Gamma API for
+  market and event metadata, a Data API for historical and analytical reads, a
+  WebSocket stream, and official CLOB client SDKs in TypeScript, Python, and
+  Rust.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Prediction Markets
+  - DeFi
+  - Polygon
+  - Order Book
+  - Crypto
+  - Markets
+created: '2026-05-23'
+modified: '2026-05-23'
+specificationVersion: '0.19'
+apis:
+  - aid: polymarket:clob-api
+    name: Polymarket CLOB API
+    description: >-
+      Central-limit order book REST API for Polymarket - place, cancel, and
+      query orders, list markets and tokens, fetch order books and trades, and
+      look up user positions. Used by traders and bots interacting with
+      Polymarket's matched markets.
+    humanURL: https://docs.polymarket.com/
+    baseURL: https://clob.polymarket.com
+    tags:
+      - REST
+      - Orders
+      - Order Book
+      - Markets
+    properties:
+      - type: Documentation
+        url: https://docs.polymarket.com/
+  - aid: polymarket:gamma-api
+    name: Polymarket Gamma API
+    description: >-
+      Read-only metadata API for markets, events, tags, and categories - the
+      surface that powers polymarket.com's listings and search. Useful for
+      discovery and for stitching multiple binary markets into the broader
+      events they belong to.
+    humanURL: https://docs.polymarket.com/
+    baseURL: https://gamma-api.polymarket.com
+    tags:
+      - REST
+      - Markets
+      - Events
+      - Metadata
+    properties:
+      - type: Documentation
+        url: https://docs.polymarket.com/
+  - aid: polymarket:data-api
+    name: Polymarket Data API
+    description: >-
+      Historical and analytical data API exposing trades, prices, volumes,
+      holders, and time-series aggregates across Polymarket markets, intended
+      for research, dashboards, and quantitative use.
+    humanURL: https://docs.polymarket.com/
+    baseURL: https://data-api.polymarket.com
+    tags:
+      - Data
+      - Historical
+      - Analytics
+    properties:
+      - type: Documentation
+        url: https://docs.polymarket.com/
+  - aid: polymarket:websocket
+    name: Polymarket WebSocket
+    description: >-
+      Real-time streaming feed for order book updates, trades, and market
+      events on the Polymarket CLOB - used by trading clients to maintain a
+      live view of the book without polling.
+    humanURL: https://docs.polymarket.com/
+    baseURL: wss://ws-subscriptions-clob.polymarket.com
+    tags:
+      - WebSocket
+      - Streaming
+      - Order Book
+    properties:
+      - type: Documentation
+        url: https://docs.polymarket.com/
+  - aid: polymarket:py-clob-client
+    name: py-clob-client (Python SDK)
+    description: >-
+      Official Python SDK for the Polymarket CLOB API - wallet signing, EIP-712
+      order construction, place / cancel / query, and market data helpers.
+    humanURL: https://github.com/Polymarket/py-clob-client
+    baseURL: https://github.com/Polymarket/py-clob-client
+    tags:
+      - SDK
+      - Python
+      - CLOB
+    properties:
+      - type: Repository
+        url: https://github.com/Polymarket/py-clob-client
+  - aid: polymarket:clob-client-ts
+    name: clob-client (TypeScript SDK)
+    description: >-
+      Official TypeScript / JavaScript SDK for the Polymarket CLOB API - typed
+      clients, wallet integration (viem), order construction, and market data
+      helpers.
+    humanURL: https://github.com/Polymarket/clob-client
+    baseURL: https://github.com/Polymarket/clob-client
+    tags:
+      - SDK
+      - TypeScript
+      - JavaScript
+      - CLOB
+    properties:
+      - type: Repository
+        url: https://github.com/Polymarket/clob-client
+  - aid: polymarket:clob-client-rust
+    name: clob-client (Rust SDK)
+    description: >-
+      Official Rust SDK for the Polymarket CLOB API.
+    humanURL: https://github.com/Polymarket/rust-clob-client
+    baseURL: https://github.com/Polymarket/rust-clob-client
+    tags:
+      - SDK
+      - Rust
+      - CLOB
+    properties:
+      - type: Repository
+        url: https://github.com/Polymarket/rust-clob-client
+common:
+  - type: Website
+    url: https://polymarket.com/
+  - type: Documentation
+    url: https://docs.polymarket.com/
+  - type: US Documentation
+    url: https://docs.polymarket.us/
+  - type: GitHub
+    url: https://github.com/Polymarket
+  - type: Builders Program
+    url: https://builders.polymarket.com/
+  - type: Help Desk
+    url: https://help.polymarket.com/
+  - type: Status
+    url: https://status.polymarket.com/
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/polymarket/
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
