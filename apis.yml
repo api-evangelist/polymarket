@@ -147,6 +147,8 @@ common:
     url: https://status.polymarket.com/
   - type: LinkedIn
     url: https://www.linkedin.com/company/polymarket/
+  - type: LLMsTxt
+    url: https://docs.polymarket.us/llms.txt
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
