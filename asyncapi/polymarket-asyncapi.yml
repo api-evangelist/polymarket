@@ -1,0 +1,353 @@
+asyncapi: 2.6.0
+info:
+  title: Polymarket CLOB WebSocket API
+  version: 1.0.0
+  description: >-
+    Real-time streaming feed for Polymarket's central-limit order book (CLOB).
+    Two channels are exposed: a public market channel that streams order book
+    snapshots, price level updates, tick size changes, and last trade prices for
+    subscribed assets; and an authenticated user channel that streams a user's
+    own order lifecycle and trade lifecycle events. Clients send PING every 10
+    seconds and expect a PONG response from the server.
+  contact:
+    name: Polymarket Developer Documentation
+    url: https://docs.polymarket.com/
+servers:
+  production:
+    url: ws-subscriptions-clob.polymarket.com
+    protocol: wss
+    description: Polymarket CLOB WebSocket production server.
+defaultContentType: application/json
+channels:
+  /ws/market:
+    description: >-
+      Public market channel. Subscribe by sending a subscription message with a
+      list of asset_ids (ERC-1155 token IDs for YES/NO outcomes). Streams order
+      book snapshots, price changes, tick size changes, and last trade prices
+      for those assets. No authentication required.
+    publish:
+      operationId: subscribeMarket
+      summary: Subscribe to one or more assets on the market channel.
+      message:
+        $ref: '#/components/messages/MarketSubscription'
+    subscribe:
+      operationId: receiveMarketEvents
+      summary: Receive market channel events for subscribed assets.
+      message:
+        oneOf:
+          - $ref: '#/components/messages/Book'
+          - $ref: '#/components/messages/PriceChange'
+          - $ref: '#/components/messages/TickSizeChange'
+          - $ref: '#/components/messages/LastTradePrice'
+  /ws/user:
+    description: >-
+      Authenticated user channel. Subscribe by sending a subscription message
+      with API credentials (apiKey, secret, passphrase) and a list of market
+      condition IDs. Streams the user's own order and trade lifecycle events
+      for those markets.
+    publish:
+      operationId: subscribeUser
+      summary: Subscribe to one or more markets on the user channel.
+      message:
+        $ref: '#/components/messages/UserSubscription'
+    subscribe:
+      operationId: receiveUserEvents
+      summary: Receive user channel events for the authenticated user.
+      message:
+        oneOf:
+          - $ref: '#/components/messages/Trade'
+          - $ref: '#/components/messages/Order'
+components:
+  messages:
+    MarketSubscription:
+      name: MarketSubscription
+      title: Market Channel Subscription
+      summary: Subscribe to market channel updates for a list of asset IDs.
+      payload:
+        type: object
+        required:
+          - type
+          - assets_ids
+        properties:
+          type:
+            type: string
+            const: market
+          assets_ids:
+            type: array
+            description: List of ERC-1155 token IDs to subscribe to.
+            items:
+              type: string
+    UserSubscription:
+      name: UserSubscription
+      title: User Channel Subscription
+      summary: Subscribe to user channel events with API credentials and a list of market condition IDs.
+      payload:
+        type: object
+        required:
+          - type
+          - markets
+          - auth
+        properties:
+          type:
+            type: string
+            const: user
+          markets:
+            type: array
+            description: List of market condition IDs to subscribe to.
+            items:
+              type: string
+          auth:
+            type: object
+            required:
+              - apiKey
+              - secret
+              - passphrase
+            properties:
+              apiKey:
+                type: string
+              secret:
+                type: string
+              passphrase:
+                type: string
+    Book:
+      name: Book
+      title: Order Book Snapshot
+      summary: Full order book snapshot for an asset.
+      payload:
+        type: object
+        properties:
+          event_type:
+            type: string
+            const: book
+          asset_id:
+            type: string
+            description: ERC-1155 token ID for the outcome.
+          market:
+            type: string
+            description: Market condition ID.
+          bids:
+            type: array
+            items:
+              $ref: '#/components/schemas/PriceLevel'
+          asks:
+            type: array
+            items:
+              $ref: '#/components/schemas/PriceLevel'
+          timestamp:
+            type: string
+          hash:
+            type: string
+    PriceChange:
+      name: PriceChange
+      title: Price Change
+      summary: One or more price level changes within a market. A size of "0" indicates the price level has been removed from the book.
+      payload:
+        type: object
+        properties:
+          event_type:
+            type: string
+            const: price_change
+          market:
+            type: string
+          timestamp:
+            type: string
+          price_changes:
+            type: array
+            items:
+              type: object
+              properties:
+                asset_id:
+                  type: string
+                price:
+                  type: string
+                size:
+                  type: string
+                side:
+                  type: string
+                  enum:
+                    - BUY
+                    - SELL
+                hash:
+                  type: string
+                best_bid:
+                  type: string
+                best_ask:
+                  type: string
+    TickSizeChange:
+      name: TickSizeChange
+      title: Tick Size Change
+      summary: Tick size adjustment for an asset's order book.
+      payload:
+        type: object
+        properties:
+          event_type:
+            type: string
+            const: tick_size_change
+          asset_id:
+            type: string
+          market:
+            type: string
+          old_tick_size:
+            type: string
+          new_tick_size:
+            type: string
+          timestamp:
+            type: string
+    LastTradePrice:
+      name: LastTradePrice
+      title: Last Trade Price
+      summary: Most recent executed trade price for an asset.
+      payload:
+        type: object
+        properties:
+          event_type:
+            type: string
+            const: last_trade_price
+          asset_id:
+            type: string
+          market:
+            type: string
+          price:
+            type: string
+          side:
+            type: string
+            enum:
+              - BUY
+              - SELL
+          size:
+            type: string
+          fee_rate_bps:
+            type: string
+          timestamp:
+            type: string
+    Trade:
+      name: Trade
+      title: User Trade Lifecycle Event
+      summary: >-
+        Trade lifecycle update for the authenticated user. Status transitions
+        from MATCHED through MINED, CONFIRMED, RETRYING, or FAILED.
+      payload:
+        type: object
+        properties:
+          type:
+            type: string
+            const: TRADE
+          event_type:
+            type: string
+            const: trade
+          id:
+            type: string
+          asset_id:
+            type: string
+          market:
+            type: string
+          owner:
+            type: string
+          trade_owner:
+            type: string
+          side:
+            type: string
+            enum:
+              - BUY
+              - SELL
+          size:
+            type: string
+          price:
+            type: string
+          outcome:
+            type: string
+            enum:
+              - 'YES'
+              - 'NO'
+          status:
+            type: string
+            enum:
+              - MATCHED
+              - MINED
+              - CONFIRMED
+              - RETRYING
+              - FAILED
+          timestamp:
+            type: string
+          matchtime:
+            type: string
+          last_update:
+            type: string
+          taker_order_id:
+            type: string
+          maker_orders:
+            type: array
+            items:
+              type: object
+              properties:
+                order_id:
+                  type: string
+                asset_id:
+                  type: string
+                owner:
+                  type: string
+                outcome:
+                  type: string
+                  enum:
+                    - 'YES'
+                    - 'NO'
+                price:
+                  type: string
+                matched_amount:
+                  type: string
+    Order:
+      name: Order
+      title: User Order Lifecycle Event
+      summary: Order placement, update, or cancellation for the authenticated user.
+      payload:
+        type: object
+        properties:
+          type:
+            type: string
+            enum:
+              - PLACEMENT
+              - UPDATE
+              - CANCELLATION
+          event_type:
+            type: string
+            const: order
+          id:
+            type: string
+          asset_id:
+            type: string
+          market:
+            type: string
+          owner:
+            type: string
+          order_owner:
+            type: string
+          side:
+            type: string
+            enum:
+              - BUY
+              - SELL
+          price:
+            type: string
+          outcome:
+            type: string
+            enum:
+              - 'YES'
+              - 'NO'
+          original_size:
+            type: string
+          size_matched:
+            type: string
+          timestamp:
+            type: string
+          associate_trades:
+            type:
+              - string
+              - 'null'
+  schemas:
+    PriceLevel:
+      type: object
+      properties:
+        price:
+          type: string
+        size:
+          type: string

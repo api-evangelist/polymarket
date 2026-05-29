@@ -20,7 +20,7 @@ tags:
   - Crypto
   - Markets
 created: '2026-05-23'
-modified: '2026-05-23'
+modified: '2026-05-29'
 specificationVersion: '0.19'
 apis:
   - aid: polymarket:clob-api
@@ -87,6 +87,8 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.polymarket.com/
+      - type: AsyncAPI
+        url: https://raw.githubusercontent.com/api-evangelist/polymarket/refs/heads/main/asyncapi/polymarket-asyncapi.yml
   - aid: polymarket:py-clob-client
     name: py-clob-client (Python SDK)
     description: >-
