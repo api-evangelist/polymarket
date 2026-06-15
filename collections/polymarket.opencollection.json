@@ -1,0 +1,224 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Polymarket APIs (CLOB and Gamma)",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CLOB Trade",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Post a new order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://clob.polymarket.com/order",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "POLY_API_KEY",
+              "value": "{{POLY_API_KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Submit a new signed order to the Polymarket CLOB.\nRequires the full POLY_* signed-request header set.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "CLOB Market Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get midpoint price for a market",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://clob.polymarket.com/midpoint",
+            "params": [
+              {
+                "name": "token_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the average of the best bid and best ask prices for the given token."
+        },
+        {
+          "info": {
+            "name": "Get server time",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://clob.polymarket.com/time"
+          },
+          "docs": "Returns the current Unix timestamp of the CLOB server."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Gamma Markets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get market by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://clob.polymarket.com/markets/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "include_tag",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a single market by its numeric identifier."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Gamma Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://clob.polymarket.com/events",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated field list to sort by."
+              },
+              {
+                "name": "ascending",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tag_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "active",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "archived",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "featured",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "closed",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "liquidity_min",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "liquidity_max",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "volume_min",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "volume_max",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_date_min",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_date_max",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end_date_min",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end_date_max",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns an array of event objects. Supports filtering and pagination."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

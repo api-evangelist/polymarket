@@ -1,0 +1,769 @@
+{
+  "item": [
+    {
+      "id": "4721d4ab-5dd5-44fa-a1a9-d1b8da4d5c63",
+      "name": "CLOB Trade",
+      "description": {
+        "content": "Order placement and management on the central-limit order book.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0b7a45c0-5af6-4aa5-9a40-b6f8a2f4c035",
+          "name": "Post a new order",
+          "request": {
+            "name": "Post a new order",
+            "description": {
+              "content": "Submit a new signed order to the Polymarket CLOB.\nRequires the full POLY_* signed-request header set.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "order"
+              ],
+              "host": [
+                "clob",
+                "polymarket",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "POLY_API_KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order\": {\n    \"maker\": \"<string>\",\n    \"signer\": \"<string>\",\n    \"tokenId\": \"<string>\",\n    \"makerAmount\": \"<string>\",\n    \"takerAmount\": \"<string>\",\n    \"side\": \"<string>\",\n    \"expiration\": \"<string>\",\n    \"timestamp\": \"<string>\",\n    \"builder\": \"<string>\",\n    \"signature\": \"<string>\",\n    \"salt\": \"<string>\",\n    \"signatureType\": \"<integer>\"\n  },\n  \"owner\": \"<string>\",\n  \"orderType\": \"GTC\",\n  \"deferExec\": false,\n  \"postOnly\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c074e4ff-8e37-4511-a868-36b11af08fea",
+              "name": "Order acknowledgement",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "order"
+                  ],
+                  "host": [
+                    "clob",
+                    "polymarket",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "POLY_API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"order\": {\n    \"maker\": \"string\",\n    \"signer\": \"string\",\n    \"tokenId\": \"string\",\n    \"makerAmount\": \"string\",\n    \"takerAmount\": \"string\",\n    \"side\": \"BUY\",\n    \"expiration\": \"string\",\n    \"timestamp\": \"string\",\n    \"builder\": \"string\",\n    \"signature\": \"string\",\n    \"salt\": \"string\",\n    \"signatureType\": 3786\n  },\n  \"owner\": \"<string>\",\n  \"orderType\": \"GTC\",\n  \"deferExec\": false,\n  \"postOnly\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"errorMsg\": \"string\",\n  \"orderID\": \"string\",\n  \"transactionsHashes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "8140cddc-a09f-479a-8b77-7de0f7021eae",
+      "name": "CLOB Market Data",
+      "description": {
+        "content": "Public CLOB market data.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8d4d70e7-480d-46ae-ac7c-94103c4ce6d8",
+          "name": "Get midpoint price for a market",
+          "request": {
+            "name": "Get midpoint price for a market",
+            "description": {
+              "content": "Returns the average of the best bid and best ask prices for the given token.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "midpoint"
+              ],
+              "host": [
+                "clob",
+                "polymarket",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "token_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e762f9c6-28e2-4f72-9b46-8edcd048ae7c",
+              "name": "Midpoint",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "midpoint"
+                  ],
+                  "host": [
+                    "clob",
+                    "polymarket",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "token_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"mid\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "68119573-6782-41f8-b78d-f35df8e7d3d1",
+          "name": "Get server time",
+          "request": {
+            "name": "Get server time",
+            "description": {
+              "content": "Returns the current Unix timestamp of the CLOB server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "time"
+              ],
+              "host": [
+                "clob",
+                "polymarket",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6f1d8ed6-bcaf-452b-87bb-83a4dbca56cb",
+              "name": "Server time",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "time"
+                  ],
+                  "host": [
+                    "clob",
+                    "polymarket",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"time\": 133\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "969bc12e-c77c-4b20-a33e-c6c2b8f87489",
+      "name": "Gamma Markets",
+      "description": {
+        "content": "Read-only market metadata.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7aeb981c-aded-4413-ab83-f302332abc69",
+          "name": "Get market by id",
+          "request": {
+            "name": "Get market by id",
+            "description": {
+              "content": "Returns a single market by its numeric identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "markets",
+                ":id"
+              ],
+              "host": [
+                "gamma-api",
+                "polymarket",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include_tag",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d63dc896-7d52-4e5e-9110-4a59f7a6dda4",
+              "name": "Market object",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "markets",
+                    ":id"
+                  ],
+                  "host": [
+                    "gamma-api",
+                    "polymarket",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_tag",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 7869,\n  \"question\": \"string\",\n  \"slug\": \"string\",\n  \"conditionId\": \"string\",\n  \"active\": false,\n  \"closed\": true,\n  \"archived\": true,\n  \"featured\": true,\n  \"liquidity\": 8853.488996685728,\n  \"volume\": 7583.402403757481,\n  \"startDate\": \"1985-09-16T15:56:29.526Z\",\n  \"endDate\": \"2009-11-14T19:52:16.328Z\",\n  \"outcomes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"outcomePrices\": [\n    \"string\",\n    \"string\"\n  ],\n  \"clobTokenIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"tags\": [\n    {\n      \"id\": 229,\n      \"label\": \"string\",\n      \"slug\": \"string\"\n    },\n    {\n      \"id\": 9554,\n      \"label\": \"string\",\n      \"slug\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d26e53af-04e2-4b7b-8b28-5800e6121dfb",
+              "name": "Market not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "markets",
+                    ":id"
+                  ],
+                  "host": [
+                    "gamma-api",
+                    "polymarket",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_tag",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "d433ed55-eb5a-48d3-b021-5c1c444df068",
+      "name": "Gamma Events",
+      "description": {
+        "content": "Read-only event metadata.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cd42882a-7664-4833-a9c9-84a55b8c8f65",
+          "name": "List events",
+          "request": {
+            "name": "List events",
+            "description": {
+              "content": "Returns an array of event objects. Supports filtering and pagination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "events"
+              ],
+              "host": [
+                "gamma-api",
+                "polymarket",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Comma-separated field list to sort by."
+                },
+                {
+                  "disabled": false,
+                  "key": "ascending",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tag_id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "slug",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "slug",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "active",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "archived",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "featured",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "closed",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "liquidity_min",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "liquidity_max",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "volume_min",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "volume_max",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_date_min",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_date_max",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date_min",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date_max",
+                  "value": "<dateTime>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "368e81f3-3890-403b-826b-d8ed0dc97135",
+              "name": "Array of events",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "gamma-api",
+                    "polymarket",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ascending",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "tag_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "active",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "archived",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "featured",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "closed",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "liquidity_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "liquidity_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "volume_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "volume_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "start_date_min",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "start_date_max",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_date_min",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_date_max",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 8905,\n    \"ticker\": \"string\",\n    \"slug\": \"string\",\n    \"title\": \"string\",\n    \"description\": \"string\",\n    \"startDate\": \"1987-10-06T15:17:20.045Z\",\n    \"endDate\": \"1966-06-10T00:56:41.363Z\",\n    \"active\": true,\n    \"closed\": false,\n    \"archived\": false,\n    \"featured\": false,\n    \"liquidity\": 1311.492371871118,\n    \"volume\": 6100.587086947752,\n    \"markets\": [\n      {\n        \"id\": 6414,\n        \"question\": \"string\",\n        \"slug\": \"string\",\n        \"conditionId\": \"string\",\n        \"active\": true,\n        \"closed\": false,\n        \"archived\": true,\n        \"featured\": false,\n        \"liquidity\": 3899.2577312318253,\n        \"volume\": 9432.248805128782,\n        \"startDate\": \"1997-03-27T23:55:24.883Z\",\n        \"endDate\": \"1977-09-15T05:01:21.284Z\",\n        \"outcomes\": [\n          \"string\",\n          \"string\"\n        ],\n        \"outcomePrices\": [\n          \"string\",\n          \"string\"\n        ],\n        \"clobTokenIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tags\": [\n          {\n            \"id\": 394,\n            \"label\": \"string\",\n            \"slug\": \"string\"\n          },\n          {\n            \"id\": 9669,\n            \"label\": \"string\",\n            \"slug\": \"string\"\n          }\n        ]\n      },\n      {\n        \"id\": 2288,\n        \"question\": \"string\",\n        \"slug\": \"string\",\n        \"conditionId\": \"string\",\n        \"active\": true,\n        \"closed\": true,\n        \"archived\": true,\n        \"featured\": false,\n        \"liquidity\": 4785.973367062543,\n        \"volume\": 5321.784927288944,\n        \"startDate\": \"1972-06-27T16:12:30.864Z\",\n        \"endDate\": \"1974-03-27T16:58:33.358Z\",\n        \"outcomes\": [\n          \"string\",\n          \"string\"\n        ],\n        \"outcomePrices\": [\n          \"string\",\n          \"string\"\n        ],\n        \"clobTokenIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tags\": [\n          {\n            \"id\": 9245,\n            \"label\": \"string\",\n            \"slug\": \"string\"\n          },\n          {\n            \"id\": 4072,\n            \"label\": \"string\",\n            \"slug\": \"string\"\n          }\n        ]\n      }\n    ],\n    \"tags\": [\n      {\n        \"id\": 4145,\n        \"label\": \"string\",\n        \"slug\": \"string\"\n      },\n      {\n        \"id\": 7933,\n        \"label\": \"string\",\n        \"slug\": \"string\"\n      }\n    ],\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": true\n  },\n  {\n    \"id\": 6194,\n    \"ticker\": \"string\",\n    \"slug\": \"string\",\n    \"title\": \"string\",\n    \"description\": \"string\",\n    \"startDate\": \"1985-08-17T04:30:15.693Z\",\n    \"endDate\": \"1982-06-20T12:14:53.797Z\",\n    \"active\": true,\n    \"closed\": true,\n    \"archived\": false,\n    \"featured\": false,\n    \"liquidity\": 76.88509402788202,\n    \"volume\": 4012.968445185753,\n    \"markets\": [\n      {\n        \"id\": 9863,\n        \"question\": \"string\",\n        \"slug\": \"string\",\n        \"conditionId\": \"string\",\n        \"active\": false,\n        \"closed\": false,\n        \"archived\": true,\n        \"featured\": true,\n        \"liquidity\": 7685.631509177148,\n        \"volume\": 7622.894503916111,\n        \"startDate\": \"1973-09-23T04:14:42.566Z\",\n        \"endDate\": \"1987-08-04T19:42:43.736Z\",\n        \"outcomes\": [\n          \"string\",\n          \"string\"\n        ],\n        \"outcomePrices\": [\n          \"string\",\n          \"string\"\n        ],\n        \"clobTokenIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tags\": [\n          {\n            \"id\": 9562,\n            \"label\": \"string\",\n            \"slug\": \"string\"\n          },\n          {\n            \"id\": 8532,\n            \"label\": \"string\",\n            \"slug\": \"string\"\n          }\n        ]\n      },\n      {\n        \"id\": 9742,\n        \"question\": \"string\",\n        \"slug\": \"string\",\n        \"conditionId\": \"string\",\n        \"active\": true,\n        \"closed\": false,\n        \"archived\": true,\n        \"featured\": true,\n        \"liquidity\": 6845.30658234278,\n        \"volume\": 3131.5050269591525,\n        \"startDate\": \"2013-11-02T08:21:15.977Z\",\n        \"endDate\": \"2004-11-21T14:57:36.791Z\",\n        \"outcomes\": [\n          \"string\",\n          \"string\"\n        ],\n        \"outcomePrices\": [\n          \"string\",\n          \"string\"\n        ],\n        \"clobTokenIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tags\": [\n          {\n            \"id\": 6263,\n            \"label\": \"string\",\n            \"slug\": \"string\"\n          },\n          {\n            \"id\": 9936,\n            \"label\": \"string\",\n            \"slug\": \"string\"\n          }\n        ]\n      }\n    ],\n    \"tags\": [\n      {\n        \"id\": 7504,\n        \"label\": \"string\",\n        \"slug\": \"string\"\n      },\n      {\n        \"id\": 6548,\n        \"label\": \"string\",\n        \"slug\": \"string\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://clob.polymarket.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "257ca113-9af9-4015-9731-7ea85c86e3cc",
+    "name": "Polymarket APIs (CLOB and Gamma)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Polymarket exposes several HTTP APIs documented at\nhttps://docs.polymarket.com/:\n\n  * CLOB API (`https://clob.polymarket.com`) for order book,\n    trading, and pricing operations.\n  * Gamma API (`https://gamma-api.polymarket.com`) for read-only\n    market, event, and metadata access.\n\nThis specification captures a representative subset of endpoints\nfrom both surfaces. CLOB trading endpoints require the\nPOLY_API_KEY / POLY_ADDRESS / POLY_SIGNATURE / POLY_PASSPHRASE /\nPOLY_TIMESTAMP header set; Gamma endpoints are fully public.\n\n\nContact Support:\n Name: Polymarket Documentation",
+      "type": "text/plain"
+    }
+  }
+}
