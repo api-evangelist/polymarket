@@ -143,13 +143,13 @@ common:
     url: https://github.com/Polymarket
   - type: Builders Program
     url: https://builders.polymarket.com/
-  - type: Help Desk
+  - type: Support
     url: https://help.polymarket.com/
   - type: Status
     url: https://status.polymarket.com/
   - type: LinkedIn
     url: https://www.linkedin.com/company/polymarket/
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://docs.polymarket.us/llms.txt
 maintainers:
   - FN: Kin Lane
