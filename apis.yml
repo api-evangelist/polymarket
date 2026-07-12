@@ -133,6 +133,10 @@ apis:
       - type: Repository
         url: https://github.com/Polymarket/rust-clob-client
 common:
+  - type: DomainSecurity
+    url: security/polymarket-domain-security.yml
+  - type: Authentication
+    url: authentication/polymarket-authentication.yml
   - type: Website
     url: https://polymarket.com/
   - type: Documentation

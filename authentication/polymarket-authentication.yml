@@ -1,0 +1,21 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/polymarket-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: polyApiSignature
+  type: apiKey
+  in: header
+  parameter: POLY_API_KEY
+  description: |-
+    Polymarket CLOB authenticated trading endpoints require five
+    headers: POLY_API_KEY, POLY_ADDRESS, POLY_SIGNATURE,
+    POLY_PASSPHRASE, POLY_TIMESTAMP. Only POLY_API_KEY is modelled
+    here because OpenAPI security schemes describe a single header
+    each; in practice, all five must be sent on each request.
+  sources:
+  - openapi/polymarket-openapi.yml
