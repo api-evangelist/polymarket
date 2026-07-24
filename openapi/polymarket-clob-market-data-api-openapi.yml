@@ -1,0 +1,82 @@
+openapi: 3.1.0
+info:
+  title: Polymarket APIs (CLOB and Gamma) CLOB Market Data API
+  version: '1.0'
+  description: "Polymarket exposes several HTTP APIs documented at\nhttps://docs.polymarket.com/:\n\n  * CLOB API (`https://clob.polymarket.com`) for order book,\n    trading, and pricing operations.\n  * Gamma API (`https://gamma-api.polymarket.com`) for read-only\n    market, event, and metadata access.\n\nThis specification captures a representative subset of endpoints\nfrom both surfaces. CLOB trading endpoints require the\nPOLY_API_KEY / POLY_ADDRESS / POLY_SIGNATURE / POLY_PASSPHRASE /\nPOLY_TIMESTAMP header set; Gamma endpoints are fully public.\n"
+  contact:
+    name: Polymarket Documentation
+    url: https://docs.polymarket.com/
+servers:
+- url: https://clob.polymarket.com
+  description: Polymarket CLOB API
+- url: https://clob-staging.polymarket.com
+  description: Polymarket CLOB staging
+- url: https://gamma-api.polymarket.com
+  description: Polymarket Gamma API
+tags:
+- name: CLOB Market Data
+  description: Public CLOB market data.
+paths:
+  /midpoint:
+    get:
+      tags:
+      - CLOB Market Data
+      operationId: getMidpointPrice
+      summary: Get midpoint price for a market
+      description: Returns the average of the best bid and best ask prices for the given token.
+      servers:
+      - url: https://clob.polymarket.com
+      parameters:
+      - in: query
+        name: token_id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Midpoint
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  mid:
+                    type: string
+                    description: Midpoint price as a decimal string.
+  /time:
+    get:
+      tags:
+      - CLOB Market Data
+      operationId: getServerTime
+      summary: Get server time
+      description: Returns the current Unix timestamp of the CLOB server.
+      servers:
+      - url: https://clob.polymarket.com
+      responses:
+        '200':
+          description: Server time
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  time:
+                    type: integer
+                    format: int64
+components:
+  securitySchemes:
+    polyApiSignature:
+      type: apiKey
+      in: header
+      name: POLY_API_KEY
+      description: 'Polymarket CLOB authenticated trading endpoints require five
+
+        headers: POLY_API_KEY, POLY_ADDRESS, POLY_SIGNATURE,
+
+        POLY_PASSPHRASE, POLY_TIMESTAMP. Only POLY_API_KEY is modelled
+
+        here because OpenAPI security schemes describe a single header
+
+        each; in practice, all five must be sent on each request.
+
+        '

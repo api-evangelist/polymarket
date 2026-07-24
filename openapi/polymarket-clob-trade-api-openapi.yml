@@ -1,0 +1,153 @@
+openapi: 3.1.0
+info:
+  title: Polymarket APIs (CLOB and Gamma) CLOB Market Data CLOB Trade API
+  version: '1.0'
+  description: "Polymarket exposes several HTTP APIs documented at\nhttps://docs.polymarket.com/:\n\n  * CLOB API (`https://clob.polymarket.com`) for order book,\n    trading, and pricing operations.\n  * Gamma API (`https://gamma-api.polymarket.com`) for read-only\n    market, event, and metadata access.\n\nThis specification captures a representative subset of endpoints\nfrom both surfaces. CLOB trading endpoints require the\nPOLY_API_KEY / POLY_ADDRESS / POLY_SIGNATURE / POLY_PASSPHRASE /\nPOLY_TIMESTAMP header set; Gamma endpoints are fully public.\n"
+  contact:
+    name: Polymarket Documentation
+    url: https://docs.polymarket.com/
+servers:
+- url: https://clob.polymarket.com
+  description: Polymarket CLOB API
+- url: https://clob-staging.polymarket.com
+  description: Polymarket CLOB staging
+- url: https://gamma-api.polymarket.com
+  description: Polymarket Gamma API
+tags:
+- name: CLOB Trade
+  description: Order placement and management on the central-limit order book.
+paths:
+  /order:
+    post:
+      tags:
+      - CLOB Trade
+      operationId: postNewOrder
+      summary: Post a new order
+      description: 'Submit a new signed order to the Polymarket CLOB.
+
+        Requires the full POLY_* signed-request header set.
+
+        '
+      servers:
+      - url: https://clob.polymarket.com
+      - url: https://clob-staging.polymarket.com
+      security:
+      - polyApiSignature: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        '200':
+          description: Order acknowledgement
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+components:
+  schemas:
+    OrderRequest:
+      type: object
+      required:
+      - order
+      - owner
+      properties:
+        order:
+          $ref: '#/components/schemas/Order'
+        owner:
+          type: string
+          description: UUID of the API key owner.
+        orderType:
+          type: string
+          enum:
+          - GTC
+          - FOK
+          - GTD
+          - FAK
+          default: GTC
+        deferExec:
+          type: boolean
+          default: false
+        postOnly:
+          type: boolean
+          default: false
+    OrderResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        errorMsg:
+          type: string
+        orderID:
+          type: string
+        transactionsHashes:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+    Order:
+      type: object
+      required:
+      - maker
+      - signer
+      - tokenId
+      - makerAmount
+      - takerAmount
+      - side
+      - expiration
+      - timestamp
+      - builder
+      - signature
+      - salt
+      - signatureType
+      properties:
+        maker:
+          type: string
+          description: Wallet address of the order maker.
+        signer:
+          type: string
+          description: Address that signed the order (may differ from maker for proxy signers).
+        tokenId:
+          type: string
+          description: ERC-1155 token id for the outcome.
+        makerAmount:
+          type: string
+        takerAmount:
+          type: string
+        side:
+          type: string
+          enum:
+          - BUY
+          - SELL
+        expiration:
+          type: string
+          description: Unix expiration timestamp ('0' for none).
+        timestamp:
+          type: string
+        builder:
+          type: string
+        signature:
+          type: string
+        salt:
+          type: string
+        signatureType:
+          type: integer
+  securitySchemes:
+    polyApiSignature:
+      type: apiKey
+      in: header
+      name: POLY_API_KEY
+      description: 'Polymarket CLOB authenticated trading endpoints require five
+
+        headers: POLY_API_KEY, POLY_ADDRESS, POLY_SIGNATURE,
+
+        POLY_PASSPHRASE, POLY_TIMESTAMP. Only POLY_API_KEY is modelled
+
+        here because OpenAPI security schemes describe a single header
+
+        each; in practice, all five must be sent on each request.
+
+        '

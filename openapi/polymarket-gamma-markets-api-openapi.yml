@@ -1,0 +1,122 @@
+openapi: 3.1.0
+info:
+  title: Polymarket APIs (CLOB and Gamma) CLOB Market Data Gamma Markets API
+  version: '1.0'
+  description: "Polymarket exposes several HTTP APIs documented at\nhttps://docs.polymarket.com/:\n\n  * CLOB API (`https://clob.polymarket.com`) for order book,\n    trading, and pricing operations.\n  * Gamma API (`https://gamma-api.polymarket.com`) for read-only\n    market, event, and metadata access.\n\nThis specification captures a representative subset of endpoints\nfrom both surfaces. CLOB trading endpoints require the\nPOLY_API_KEY / POLY_ADDRESS / POLY_SIGNATURE / POLY_PASSPHRASE /\nPOLY_TIMESTAMP header set; Gamma endpoints are fully public.\n"
+  contact:
+    name: Polymarket Documentation
+    url: https://docs.polymarket.com/
+servers:
+- url: https://clob.polymarket.com
+  description: Polymarket CLOB API
+- url: https://clob-staging.polymarket.com
+  description: Polymarket CLOB staging
+- url: https://gamma-api.polymarket.com
+  description: Polymarket Gamma API
+tags:
+- name: Gamma Markets
+  description: Read-only market metadata.
+paths:
+  /markets/{id}:
+    get:
+      tags:
+      - Gamma Markets
+      operationId: getMarketById
+      summary: Get market by id
+      description: Returns a single market by its numeric identifier.
+      servers:
+      - url: https://gamma-api.polymarket.com
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - in: query
+        name: include_tag
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Market object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Market'
+        '404':
+          description: Market not found
+components:
+  schemas:
+    Market:
+      type: object
+      additionalProperties: true
+      properties:
+        id:
+          type: integer
+          format: int64
+        question:
+          type: string
+        slug:
+          type: string
+        conditionId:
+          type: string
+        active:
+          type: boolean
+        closed:
+          type: boolean
+        archived:
+          type: boolean
+        featured:
+          type: boolean
+        liquidity:
+          type: number
+        volume:
+          type: number
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        outcomes:
+          type: array
+          items:
+            type: string
+        outcomePrices:
+          type: array
+          items:
+            type: string
+        clobTokenIds:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+        label:
+          type: string
+        slug:
+          type: string
+  securitySchemes:
+    polyApiSignature:
+      type: apiKey
+      in: header
+      name: POLY_API_KEY
+      description: 'Polymarket CLOB authenticated trading endpoints require five
+
+        headers: POLY_API_KEY, POLY_ADDRESS, POLY_SIGNATURE,
+
+        POLY_PASSPHRASE, POLY_TIMESTAMP. Only POLY_API_KEY is modelled
+
+        here because OpenAPI security schemes describe a single header
+
+        each; in practice, all five must be sent on each request.
+
+        '
