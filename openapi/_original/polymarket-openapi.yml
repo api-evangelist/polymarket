@@ -1,0 +1,434 @@
+openapi: 3.1.0
+info:
+  title: Polymarket APIs (CLOB and Gamma)
+  version: '1.0'
+  description: |
+    Polymarket exposes several HTTP APIs documented at
+    https://docs.polymarket.com/:
+
+      * CLOB API (`https://clob.polymarket.com`) for order book,
+        trading, and pricing operations.
+      * Gamma API (`https://gamma-api.polymarket.com`) for read-only
+        market, event, and metadata access.
+
+    This specification captures a representative subset of endpoints
+    from both surfaces. CLOB trading endpoints require the
+    POLY_API_KEY / POLY_ADDRESS / POLY_SIGNATURE / POLY_PASSPHRASE /
+    POLY_TIMESTAMP header set; Gamma endpoints are fully public.
+  contact:
+    name: Polymarket Documentation
+    url: https://docs.polymarket.com/
+servers:
+  - url: https://clob.polymarket.com
+    description: Polymarket CLOB API
+  - url: https://clob-staging.polymarket.com
+    description: Polymarket CLOB staging
+  - url: https://gamma-api.polymarket.com
+    description: Polymarket Gamma API
+tags:
+  - name: CLOB Trade
+    description: Order placement and management on the central-limit order book.
+  - name: CLOB Market Data
+    description: Public CLOB market data.
+  - name: Gamma Markets
+    description: Read-only market metadata.
+  - name: Gamma Events
+    description: Read-only event metadata.
+paths:
+  /order:
+    post:
+      tags: [CLOB Trade]
+      operationId: postNewOrder
+      summary: Post a new order
+      description: |
+        Submit a new signed order to the Polymarket CLOB.
+        Requires the full POLY_* signed-request header set.
+      servers:
+        - url: https://clob.polymarket.com
+        - url: https://clob-staging.polymarket.com
+      security:
+        - polyApiSignature: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRequest'
+      responses:
+        '200':
+          description: Order acknowledgement
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+  /midpoint:
+    get:
+      tags: [CLOB Market Data]
+      operationId: getMidpointPrice
+      summary: Get midpoint price for a market
+      description: Returns the average of the best bid and best ask prices for the given token.
+      servers:
+        - url: https://clob.polymarket.com
+      parameters:
+        - in: query
+          name: token_id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Midpoint
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  mid:
+                    type: string
+                    description: Midpoint price as a decimal string.
+  /time:
+    get:
+      tags: [CLOB Market Data]
+      operationId: getServerTime
+      summary: Get server time
+      description: Returns the current Unix timestamp of the CLOB server.
+      servers:
+        - url: https://clob.polymarket.com
+      responses:
+        '200':
+          description: Server time
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  time:
+                    type: integer
+                    format: int64
+  /markets/{id}:
+    get:
+      tags: [Gamma Markets]
+      operationId: getMarketById
+      summary: Get market by id
+      description: Returns a single market by its numeric identifier.
+      servers:
+        - url: https://gamma-api.polymarket.com
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - in: query
+          name: include_tag
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Market object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Market'
+        '404':
+          description: Market not found
+  /events:
+    get:
+      tags: [Gamma Events]
+      operationId: listEvents
+      summary: List events
+      description: Returns an array of event objects. Supports filtering and pagination.
+      servers:
+        - url: https://gamma-api.polymarket.com
+      parameters:
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            minimum: 0
+        - in: query
+          name: offset
+          schema:
+            type: integer
+            minimum: 0
+        - in: query
+          name: order
+          schema:
+            type: string
+          description: Comma-separated field list to sort by.
+        - in: query
+          name: ascending
+          schema:
+            type: boolean
+        - in: query
+          name: id
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: integer
+              format: int64
+        - in: query
+          name: tag_id
+          schema:
+            type: integer
+        - in: query
+          name: slug
+          style: form
+          explode: true
+          schema:
+            type: array
+            items:
+              type: string
+        - in: query
+          name: active
+          schema:
+            type: boolean
+        - in: query
+          name: archived
+          schema:
+            type: boolean
+        - in: query
+          name: featured
+          schema:
+            type: boolean
+        - in: query
+          name: closed
+          schema:
+            type: boolean
+        - in: query
+          name: liquidity_min
+          schema:
+            type: number
+        - in: query
+          name: liquidity_max
+          schema:
+            type: number
+        - in: query
+          name: volume_min
+          schema:
+            type: number
+        - in: query
+          name: volume_max
+          schema:
+            type: number
+        - in: query
+          name: start_date_min
+          schema:
+            type: string
+            format: date-time
+        - in: query
+          name: start_date_max
+          schema:
+            type: string
+            format: date-time
+        - in: query
+          name: end_date_min
+          schema:
+            type: string
+            format: date-time
+        - in: query
+          name: end_date_max
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: Array of events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+components:
+  securitySchemes:
+    polyApiSignature:
+      type: apiKey
+      in: header
+      name: POLY_API_KEY
+      description: |
+        Polymarket CLOB authenticated trading endpoints require five
+        headers: POLY_API_KEY, POLY_ADDRESS, POLY_SIGNATURE,
+        POLY_PASSPHRASE, POLY_TIMESTAMP. Only POLY_API_KEY is modelled
+        here because OpenAPI security schemes describe a single header
+        each; in practice, all five must be sent on each request.
+  schemas:
+    Order:
+      type: object
+      required:
+        - maker
+        - signer
+        - tokenId
+        - makerAmount
+        - takerAmount
+        - side
+        - expiration
+        - timestamp
+        - builder
+        - signature
+        - salt
+        - signatureType
+      properties:
+        maker:
+          type: string
+          description: Wallet address of the order maker.
+        signer:
+          type: string
+          description: Address that signed the order (may differ from maker for proxy signers).
+        tokenId:
+          type: string
+          description: ERC-1155 token id for the outcome.
+        makerAmount:
+          type: string
+        takerAmount:
+          type: string
+        side:
+          type: string
+          enum: [BUY, SELL]
+        expiration:
+          type: string
+          description: Unix expiration timestamp ('0' for none).
+        timestamp:
+          type: string
+        builder:
+          type: string
+        signature:
+          type: string
+        salt:
+          type: string
+        signatureType:
+          type: integer
+    OrderRequest:
+      type: object
+      required: [order, owner]
+      properties:
+        order:
+          $ref: '#/components/schemas/Order'
+        owner:
+          type: string
+          description: UUID of the API key owner.
+        orderType:
+          type: string
+          enum: [GTC, FOK, GTD, FAK]
+          default: GTC
+        deferExec:
+          type: boolean
+          default: false
+        postOnly:
+          type: boolean
+          default: false
+    OrderResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        errorMsg:
+          type: string
+        orderID:
+          type: string
+        transactionsHashes:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+    Market:
+      type: object
+      additionalProperties: true
+      properties:
+        id:
+          type: integer
+          format: int64
+        question:
+          type: string
+        slug:
+          type: string
+        conditionId:
+          type: string
+        active:
+          type: boolean
+        closed:
+          type: boolean
+        archived:
+          type: boolean
+        featured:
+          type: boolean
+        liquidity:
+          type: number
+        volume:
+          type: number
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        outcomes:
+          type: array
+          items:
+            type: string
+        outcomePrices:
+          type: array
+          items:
+            type: string
+        clobTokenIds:
+          type: array
+          items:
+            type: string
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+    Event:
+      type: object
+      additionalProperties: true
+      properties:
+        id:
+          type: integer
+          format: int64
+        ticker:
+          type: string
+        slug:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        active:
+          type: boolean
+        closed:
+          type: boolean
+        archived:
+          type: boolean
+        featured:
+          type: boolean
+        liquidity:
+          type: number
+        volume:
+          type: number
+        markets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Market'
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+        label:
+          type: string
+        slug:
+          type: string

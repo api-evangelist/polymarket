@@ -1,0 +1,20 @@
+{
+  "provider": "polymarket",
+  "sources": [
+    "polymarket-clob-market-data-api-openapi.yml",
+    "polymarket-clob-trade-api-openapi.yml",
+    "polymarket-gamma-events-api-openapi.yml",
+    "polymarket-gamma-markets-api-openapi.yml"
+  ],
+  "outputs": [
+    "polymarket-clob-market-data-api-openapi.yml",
+    "polymarket-clob-trade-api-openapi.yml",
+    "polymarket-gamma-events-api-openapi.yml",
+    "polymarket-gamma-markets-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
