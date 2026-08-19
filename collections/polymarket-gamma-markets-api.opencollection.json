@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Polymarket APIs (CLOB and Gamma) CLOB Market Data Gamma Markets API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Gamma Markets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get market by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://clob.polymarket.com/markets/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "include_tag",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a single market by its numeric identifier."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

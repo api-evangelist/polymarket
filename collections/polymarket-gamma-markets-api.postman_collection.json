@@ -1,0 +1,183 @@
+{
+  "item": [
+    {
+      "id": "c584871d-2638-4ad6-b502-e5e755f44e7d",
+      "name": "Gamma Markets",
+      "description": {
+        "content": "Read-only market metadata.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a1c7ebd9-fcc0-439c-a7c5-89005cd1adf9",
+          "name": "Get market by id",
+          "request": {
+            "name": "Get market by id",
+            "description": {
+              "content": "Returns a single market by its numeric identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "markets",
+                ":id"
+              ],
+              "host": [
+                "gamma-api",
+                "polymarket",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include_tag",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "61af4df6-9d85-45c4-8500-bc25ca79938c",
+              "name": "Market object",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "markets",
+                    ":id"
+                  ],
+                  "host": [
+                    "gamma-api",
+                    "polymarket",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_tag",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 8574,\n  \"question\": \"string\",\n  \"slug\": \"string\",\n  \"conditionId\": \"string\",\n  \"active\": false,\n  \"closed\": true,\n  \"archived\": true,\n  \"featured\": false,\n  \"liquidity\": 6560.63762390216,\n  \"volume\": 4081.8175574801307,\n  \"startDate\": \"1965-10-06T05:33:16.378Z\",\n  \"endDate\": \"2025-05-09T15:49:30.706Z\",\n  \"outcomes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"outcomePrices\": [\n    \"string\",\n    \"string\"\n  ],\n  \"clobTokenIds\": [\n    \"string\",\n    \"string\"\n  ],\n  \"tags\": [\n    {\n      \"id\": 1772,\n      \"label\": \"string\",\n      \"slug\": \"string\"\n    },\n    {\n      \"id\": 8843,\n      \"label\": \"string\",\n      \"slug\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0dcbd0b1-6ed9-43e4-bbfd-a104759f93e0",
+              "name": "Market not found",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "markets",
+                    ":id"
+                  ],
+                  "host": [
+                    "gamma-api",
+                    "polymarket",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_tag",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://clob.polymarket.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8d902e79-d1a5-4782-880a-c7860cae834b",
+    "name": "Polymarket APIs (CLOB and Gamma) CLOB Market Data Gamma Markets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Polymarket exposes several HTTP APIs documented at\nhttps://docs.polymarket.com/:\n\n  * CLOB API (`https://clob.polymarket.com`) for order book,\n    trading, and pricing operations.\n  * Gamma API (`https://gamma-api.polymarket.com`) for read-only\n    market, event, and metadata access.\n\nThis specification captures a representative subset of endpoints\nfrom both surfaces. CLOB trading endpoints require the\nPOLY_API_KEY / POLY_ADDRESS / POLY_SIGNATURE / POLY_PASSPHRASE /\nPOLY_TIMESTAMP header set; Gamma endpoints are fully public.\n\n\nContact Support:\n Name: Polymarket Documentation",
+      "type": "text/plain"
+    }
+  }
+}

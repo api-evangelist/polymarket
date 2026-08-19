@@ -1,0 +1,153 @@
+{
+  "item": [
+    {
+      "id": "4e6a32c1-088c-4099-8246-56388e9b8df8",
+      "name": "CLOB Trade",
+      "description": {
+        "content": "Order placement and management on the central-limit order book.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "27124e25-34c2-487c-a48a-40ce39cb2c33",
+          "name": "Post a new order",
+          "request": {
+            "name": "Post a new order",
+            "description": {
+              "content": "Submit a new signed order to the Polymarket CLOB.\nRequires the full POLY_* signed-request header set.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "order"
+              ],
+              "host": [
+                "clob",
+                "polymarket",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "POLY_API_KEY"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order\": {\n    \"maker\": \"<string>\",\n    \"signer\": \"<string>\",\n    \"tokenId\": \"<string>\",\n    \"makerAmount\": \"<string>\",\n    \"takerAmount\": \"<string>\",\n    \"side\": \"<string>\",\n    \"expiration\": \"<string>\",\n    \"timestamp\": \"<string>\",\n    \"builder\": \"<string>\",\n    \"signature\": \"<string>\",\n    \"salt\": \"<string>\",\n    \"signatureType\": \"<integer>\"\n  },\n  \"owner\": \"<string>\",\n  \"orderType\": \"GTC\",\n  \"deferExec\": false,\n  \"postOnly\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "074bd311-1e10-4ca7-b817-fd90dd72dddd",
+              "name": "Order acknowledgement",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "order"
+                  ],
+                  "host": [
+                    "clob",
+                    "polymarket",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "POLY_API_KEY",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"order\": {\n    \"maker\": \"string\",\n    \"signer\": \"string\",\n    \"tokenId\": \"string\",\n    \"makerAmount\": \"string\",\n    \"takerAmount\": \"string\",\n    \"side\": \"SELL\",\n    \"expiration\": \"string\",\n    \"timestamp\": \"string\",\n    \"builder\": \"string\",\n    \"signature\": \"string\",\n    \"salt\": \"string\",\n    \"signatureType\": 8055\n  },\n  \"owner\": \"<string>\",\n  \"orderType\": \"GTC\",\n  \"deferExec\": false,\n  \"postOnly\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"errorMsg\": \"string\",\n  \"orderID\": \"string\",\n  \"transactionsHashes\": [\n    \"string\",\n    \"string\"\n  ],\n  \"status\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://clob.polymarket.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "31bc8493-c16f-4b60-969b-894008f11f9b",
+    "name": "Polymarket APIs (CLOB and Gamma) CLOB Market Data CLOB Trade API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Polymarket exposes several HTTP APIs documented at\nhttps://docs.polymarket.com/:\n\n  * CLOB API (`https://clob.polymarket.com`) for order book,\n    trading, and pricing operations.\n  * Gamma API (`https://gamma-api.polymarket.com`) for read-only\n    market, event, and metadata access.\n\nThis specification captures a representative subset of endpoints\nfrom both surfaces. CLOB trading endpoints require the\nPOLY_API_KEY / POLY_ADDRESS / POLY_SIGNATURE / POLY_PASSPHRASE /\nPOLY_TIMESTAMP header set; Gamma endpoints are fully public.\n\n\nContact Support:\n Name: Polymarket Documentation",
+      "type": "text/plain"
+    }
+  }
+}

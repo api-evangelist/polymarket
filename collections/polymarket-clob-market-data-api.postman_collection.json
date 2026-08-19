@@ -1,0 +1,196 @@
+{
+  "item": [
+    {
+      "id": "493f15b1-8bce-44c8-975c-20887fa5ac4b",
+      "name": "CLOB Market Data",
+      "description": {
+        "content": "Public CLOB market data.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8e37e71d-d119-4822-bd79-15d6a60b89e5",
+          "name": "Get midpoint price for a market",
+          "request": {
+            "name": "Get midpoint price for a market",
+            "description": {
+              "content": "Returns the average of the best bid and best ask prices for the given token.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "midpoint"
+              ],
+              "host": [
+                "clob",
+                "polymarket",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "token_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "38d8d461-c0a7-477a-8433-98a0d921b378",
+              "name": "Midpoint",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "midpoint"
+                  ],
+                  "host": [
+                    "clob",
+                    "polymarket",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "token_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"mid\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0680dd6e-5d8f-443e-868c-752e4ed9add8",
+          "name": "Get server time",
+          "request": {
+            "name": "Get server time",
+            "description": {
+              "content": "Returns the current Unix timestamp of the CLOB server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "time"
+              ],
+              "host": [
+                "clob",
+                "polymarket",
+                "com"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "628e9c94-08ea-4564-94ae-fe796fc9405e",
+              "name": "Server time",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "time"
+                  ],
+                  "host": [
+                    "clob",
+                    "polymarket",
+                    "com"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"time\": 5252\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://clob.polymarket.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b8961b0b-d61d-46f0-bb70-e7b82deb43fd",
+    "name": "Polymarket APIs (CLOB and Gamma) CLOB Market Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Polymarket exposes several HTTP APIs documented at\nhttps://docs.polymarket.com/:\n\n  * CLOB API (`https://clob.polymarket.com`) for order book,\n    trading, and pricing operations.\n  * Gamma API (`https://gamma-api.polymarket.com`) for read-only\n    market, event, and metadata access.\n\nThis specification captures a representative subset of endpoints\nfrom both surfaces. CLOB trading endpoints require the\nPOLY_API_KEY / POLY_ADDRESS / POLY_SIGNATURE / POLY_PASSPHRASE /\nPOLY_TIMESTAMP header set; Gamma endpoints are fully public.\n\n\nContact Support:\n Name: Polymarket Documentation",
+      "type": "text/plain"
+    }
+  }
+}

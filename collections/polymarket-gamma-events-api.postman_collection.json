@@ -1,0 +1,300 @@
+{
+  "item": [
+    {
+      "id": "19612d47-9ade-4871-85dc-46a237673339",
+      "name": "Gamma Events",
+      "description": {
+        "content": "Read-only event metadata.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "071d2f19-f8cb-4d24-858b-41c767141096",
+          "name": "List events",
+          "request": {
+            "name": "List events",
+            "description": {
+              "content": "Returns an array of event objects. Supports filtering and pagination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "protocol": "https",
+              "path": [
+                "events"
+              ],
+              "host": [
+                "gamma-api",
+                "polymarket",
+                "com"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>",
+                  "description": "Comma-separated field list to sort by."
+                },
+                {
+                  "disabled": false,
+                  "key": "ascending",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "tag_id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "slug",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "slug",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "active",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "archived",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "featured",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "closed",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "liquidity_min",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "liquidity_max",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "volume_min",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "volume_max",
+                  "value": "<number>"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_date_min",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_date_max",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date_min",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date_max",
+                  "value": "<dateTime>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d5f4da9d-76b6-4114-931a-9b0af50a96db",
+              "name": "Array of events",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "gamma-api",
+                    "polymarket",
+                    "com"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ascending",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "tag_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "active",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "archived",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "featured",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "closed",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "liquidity_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "liquidity_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "volume_min",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "volume_max",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "start_date_min",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "start_date_max",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_date_min",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end_date_max",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 5004,\n    \"ticker\": \"string\",\n    \"slug\": \"string\",\n    \"title\": \"string\",\n    \"description\": \"string\",\n    \"startDate\": \"1999-05-28T12:50:47.867Z\",\n    \"endDate\": \"1953-12-26T06:16:48.266Z\",\n    \"active\": true,\n    \"closed\": true,\n    \"archived\": true,\n    \"featured\": false,\n    \"liquidity\": 5382.997875885986,\n    \"volume\": 7697.140287910505,\n    \"markets\": [\n      {\n        \"id\": 9584,\n        \"question\": \"string\",\n        \"slug\": \"string\",\n        \"conditionId\": \"string\",\n        \"active\": true,\n        \"closed\": true,\n        \"archived\": false,\n        \"featured\": true,\n        \"liquidity\": 2321.6978436256486,\n        \"volume\": 8108.323931005791,\n        \"startDate\": \"1969-09-21T19:04:53.090Z\",\n        \"endDate\": \"1959-12-24T10:35:05.810Z\",\n        \"outcomes\": [\n          \"string\",\n          \"string\"\n        ],\n        \"outcomePrices\": [\n          \"string\",\n          \"string\"\n        ],\n        \"clobTokenIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tags\": [\n          {\n            \"id\": 8084,\n            \"label\": \"string\",\n            \"slug\": \"string\"\n          },\n          {\n            \"id\": 721,\n            \"label\": \"string\",\n            \"slug\": \"string\"\n          }\n        ]\n      },\n      {\n        \"id\": 5374,\n        \"question\": \"string\",\n        \"slug\": \"string\",\n        \"conditionId\": \"string\",\n        \"active\": false,\n        \"closed\": false,\n        \"archived\": true,\n        \"featured\": false,\n        \"liquidity\": 5570.75001958789,\n        \"volume\": 1963.5345223478419,\n        \"startDate\": \"1981-10-08T23:58:18.462Z\",\n        \"endDate\": \"1960-04-21T18:10:57.404Z\",\n        \"outcomes\": [\n          \"string\",\n          \"string\"\n        ],\n        \"outcomePrices\": [\n          \"string\",\n          \"string\"\n        ],\n        \"clobTokenIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tags\": [\n          {\n            \"id\": 6731,\n            \"label\": \"string\",\n            \"slug\": \"string\"\n          },\n          {\n            \"id\": 9557,\n            \"label\": \"string\",\n            \"slug\": \"string\"\n          }\n        ],\n        \"key_0\": 5803,\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      }\n    ],\n    \"tags\": [\n      {\n        \"id\": 7400,\n        \"label\": \"string\",\n        \"slug\": \"string\"\n      },\n      {\n        \"id\": 9713,\n        \"label\": \"string\",\n        \"slug\": \"string\"\n      }\n    ]\n  },\n  {\n    \"id\": 10,\n    \"ticker\": \"string\",\n    \"slug\": \"string\",\n    \"title\": \"string\",\n    \"description\": \"string\",\n    \"startDate\": \"1963-05-10T13:03:55.345Z\",\n    \"endDate\": \"1988-09-12T09:20:47.045Z\",\n    \"active\": false,\n    \"closed\": true,\n    \"archived\": false,\n    \"featured\": true,\n    \"liquidity\": 156.17392108565164,\n    \"volume\": 2898.758989647825,\n    \"markets\": [\n      {\n        \"id\": 1895,\n        \"question\": \"string\",\n        \"slug\": \"string\",\n        \"conditionId\": \"string\",\n        \"active\": false,\n        \"closed\": true,\n        \"archived\": true,\n        \"featured\": true,\n        \"liquidity\": 6818.034712925996,\n        \"volume\": 996.3733468065872,\n        \"startDate\": \"1998-07-14T20:27:57.182Z\",\n        \"endDate\": \"1958-06-22T12:49:27.419Z\",\n        \"outcomes\": [\n          \"string\",\n          \"string\"\n        ],\n        \"outcomePrices\": [\n          \"string\",\n          \"string\"\n        ],\n        \"clobTokenIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tags\": [\n          {\n            \"id\": 6077,\n            \"label\": \"string\",\n            \"slug\": \"string\"\n          },\n          {\n            \"id\": 7937,\n            \"label\": \"string\",\n            \"slug\": \"string\"\n          }\n        ]\n      },\n      {\n        \"id\": 108,\n        \"question\": \"string\",\n        \"slug\": \"string\",\n        \"conditionId\": \"string\",\n        \"active\": true,\n        \"closed\": false,\n        \"archived\": false,\n        \"featured\": true,\n        \"liquidity\": 5537.493637880534,\n        \"volume\": 113.06511301706679,\n        \"startDate\": \"2017-05-04T20:15:50.430Z\",\n        \"endDate\": \"1962-04-06T11:38:39.881Z\",\n        \"outcomes\": [\n          \"string\",\n          \"string\"\n        ],\n        \"outcomePrices\": [\n          \"string\",\n          \"string\"\n        ],\n        \"clobTokenIds\": [\n          \"string\",\n          \"string\"\n        ],\n        \"tags\": [\n          {\n            \"id\": 7800,\n            \"label\": \"string\",\n            \"slug\": \"string\"\n          },\n          {\n            \"id\": 887,\n            \"label\": \"string\",\n            \"slug\": \"string\"\n          }\n        ]\n      }\n    ],\n    \"tags\": [\n      {\n        \"id\": 8273,\n        \"label\": \"string\",\n        \"slug\": \"string\"\n      },\n      {\n        \"id\": 9540,\n        \"label\": \"string\",\n        \"slug\": \"string\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://clob.polymarket.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b752edb2-233f-4747-9f34-63605c64ec94",
+    "name": "Polymarket APIs (CLOB and Gamma) CLOB Market Data Gamma Events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Polymarket exposes several HTTP APIs documented at\nhttps://docs.polymarket.com/:\n\n  * CLOB API (`https://clob.polymarket.com`) for order book,\n    trading, and pricing operations.\n  * Gamma API (`https://gamma-api.polymarket.com`) for read-only\n    market, event, and metadata access.\n\nThis specification captures a representative subset of endpoints\nfrom both surfaces. CLOB trading endpoints require the\nPOLY_API_KEY / POLY_ADDRESS / POLY_SIGNATURE / POLY_PASSPHRASE /\nPOLY_TIMESTAMP header set; Gamma endpoints are fully public.\n\n\nContact Support:\n Name: Polymarket Documentation",
+      "type": "text/plain"
+    }
+  }
+}

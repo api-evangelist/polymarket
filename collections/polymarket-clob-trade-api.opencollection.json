@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Polymarket APIs (CLOB and Gamma) CLOB Market Data CLOB Trade API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CLOB Trade",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Post a new order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://clob.polymarket.com/order",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "POLY_API_KEY",
+              "value": "{{POLY_API_KEY}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Submit a new signed order to the Polymarket CLOB.\nRequires the full POLY_* signed-request header set.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

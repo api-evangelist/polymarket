@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Polymarket APIs (CLOB and Gamma) CLOB Market Data API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CLOB Market Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get midpoint price for a market",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://clob.polymarket.com/midpoint",
+            "params": [
+              {
+                "name": "token_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the average of the best bid and best ask prices for the given token."
+        },
+        {
+          "info": {
+            "name": "Get server time",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://clob.polymarket.com/time"
+          },
+          "docs": "Returns the current Unix timestamp of the CLOB server."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
