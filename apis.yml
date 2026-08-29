@@ -11,6 +11,19 @@ description: >-
   market and event metadata, a Data API for historical and analytical reads, a
   WebSocket stream, and official CLOB client SDKs in TypeScript, Python, and
   Rust.
+deliveryModel:
+  model: self-hosted
+  license: MIT
+  open_source: true
+  commercial: false
+  callable_host: true
+  label: Self-hosted open source · you run it yourself
+  confidence: high
+  source:
+  - license
+  - openapi
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: free
   onboarding: self-serve
@@ -191,6 +204,16 @@ apis:
   - type: OpenAPI
     url: openapi/polymarket-gamma-markets-api-openapi.yml
 common:
+  - type: IssueTracker
+    url: https://github.com/Polymarket/py-clob-client/issues
+  - type: Releases
+    url: https://github.com/Polymarket/py-clob-client/releases
+  - type: SecurityPolicy
+    url: https://github.com/Polymarket/py-clob-client/blob/main/SECURITY.md
+  - type: CodeOfConduct
+    url: https://github.com/Polymarket/py-clob-client/blob/main/.github/CODE_OF_CONDUCT.md
+  - type: ContributionGuide
+    url: https://github.com/Polymarket/py-clob-client/blob/main/.github/CONTRIBUTING.md
   - type: License
     name: MIT
     url: https://github.com/Polymarket/py-clob-client/blob/main/LICENSE
