@@ -1,10 +1,7 @@
 {
   "provider": "polymarket",
   "sources": [
-    "polymarket-clob-market-data-api-openapi.yml",
-    "polymarket-clob-trade-api-openapi.yml",
-    "polymarket-gamma-events-api-openapi.yml",
-    "polymarket-gamma-markets-api-openapi.yml"
+    "_original/polymarket-openapi.yml"
   ],
   "outputs": [
     "polymarket-clob-market-data-api-openapi.yml",
@@ -15,6 +12,15 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "polymarket-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "polymarket-clob-market-data-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "polymarket-clob-trade-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "polymarket-gamma-events-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "polymarket-gamma-markets-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,8 +1,15 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Polymarket APIs (CLOB and Gamma) CLOB Market Data API
   version: '1.0'
-  description: "Polymarket exposes several HTTP APIs documented at\nhttps://docs.polymarket.com/:\n\n  * CLOB API (`https://clob.polymarket.com`) for order book,\n    trading, and pricing operations.\n  * Gamma API (`https://gamma-api.polymarket.com`) for read-only\n    market, event, and metadata access.\n\nThis specification captures a representative subset of endpoints\nfrom both surfaces. CLOB trading endpoints require the\nPOLY_API_KEY / POLY_ADDRESS / POLY_SIGNATURE / POLY_PASSPHRASE /\nPOLY_TIMESTAMP header set; Gamma endpoints are fully public.\n"
+  description: 'Polymarket exposes several HTTP APIs documented at
+
+    https://docs.polymarket.com/:
+
+
+    * CLOB API (`https://clob.polymarket.com`) for order book,
+
+    trading, and pricing operations.'
   contact:
     name: Polymarket Documentation
     url: https://docs.polymarket.com/
