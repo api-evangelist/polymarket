@@ -53,6 +53,31 @@ paths:
                 $ref: '#/components/schemas/OrderResponse'
 components:
   schemas:
+    OrderRequest:
+      type: object
+      required:
+      - order
+      - owner
+      properties:
+        order:
+          $ref: '#/components/schemas/Order'
+        owner:
+          type: string
+          description: UUID of the API key owner.
+        orderType:
+          type: string
+          enum:
+          - GTC
+          - FOK
+          - GTD
+          - FAK
+          default: GTC
+        deferExec:
+          type: boolean
+          default: false
+        postOnly:
+          type: boolean
+          default: false
     OrderResponse:
       type: object
       properties:
@@ -115,31 +140,6 @@ components:
           type: string
         signatureType:
           type: integer
-    OrderRequest:
-      type: object
-      required:
-      - order
-      - owner
-      properties:
-        order:
-          $ref: '#/components/schemas/Order'
-        owner:
-          type: string
-          description: UUID of the API key owner.
-        orderType:
-          type: string
-          enum:
-          - GTC
-          - FOK
-          - GTD
-          - FAK
-          default: GTC
-        deferExec:
-          type: boolean
-          default: false
-        postOnly:
-          type: boolean
-          default: false
   securitySchemes:
     polyApiSignature:
       type: apiKey
