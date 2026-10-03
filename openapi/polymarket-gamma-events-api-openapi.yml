@@ -137,56 +137,6 @@ paths:
                   $ref: '#/components/schemas/Event'
 components:
   schemas:
-    Event:
-      type: object
-      additionalProperties: true
-      properties:
-        id:
-          type: integer
-          format: int64
-        ticker:
-          type: string
-        slug:
-          type: string
-        title:
-          type: string
-        description:
-          type: string
-        startDate:
-          type: string
-          format: date-time
-        endDate:
-          type: string
-          format: date-time
-        active:
-          type: boolean
-        closed:
-          type: boolean
-        archived:
-          type: boolean
-        featured:
-          type: boolean
-        liquidity:
-          type: number
-        volume:
-          type: number
-        markets:
-          type: array
-          items:
-            $ref: '#/components/schemas/Market'
-        tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/Tag'
-    Tag:
-      type: object
-      properties:
-        id:
-          type: integer
-        label:
-          type: string
-        slug:
-          type: string
     Market:
       type: object
       additionalProperties: true
@@ -230,6 +180,56 @@ components:
           type: array
           items:
             type: string
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+        label:
+          type: string
+        slug:
+          type: string
+    Event:
+      type: object
+      additionalProperties: true
+      properties:
+        id:
+          type: integer
+          format: int64
+        ticker:
+          type: string
+        slug:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        active:
+          type: boolean
+        closed:
+          type: boolean
+        archived:
+          type: boolean
+        featured:
+          type: boolean
+        liquidity:
+          type: number
+        volume:
+          type: number
+        markets:
+          type: array
+          items:
+            $ref: '#/components/schemas/Market'
         tags:
           type: array
           items:

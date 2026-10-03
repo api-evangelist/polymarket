@@ -55,15 +55,6 @@ paths:
           description: Market not found
 components:
   schemas:
-    Tag:
-      type: object
-      properties:
-        id:
-          type: integer
-        label:
-          type: string
-        slug:
-          type: string
     Market:
       type: object
       additionalProperties: true
@@ -111,6 +102,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Tag'
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+        label:
+          type: string
+        slug:
+          type: string
   securitySchemes:
     polyApiSignature:
       type: apiKey

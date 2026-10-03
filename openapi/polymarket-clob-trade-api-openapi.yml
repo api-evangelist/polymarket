@@ -78,21 +78,6 @@ components:
         postOnly:
           type: boolean
           default: false
-    OrderResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        errorMsg:
-          type: string
-        orderID:
-          type: string
-        transactionsHashes:
-          type: array
-          items:
-            type: string
-        status:
-          type: string
     Order:
       type: object
       required:
@@ -140,6 +125,21 @@ components:
           type: string
         signatureType:
           type: integer
+    OrderResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        errorMsg:
+          type: string
+        orderID:
+          type: string
+        transactionsHashes:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
   securitySchemes:
     polyApiSignature:
       type: apiKey
