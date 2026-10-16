@@ -1,0 +1,14 @@
+{
+  "repo": "polymarket",
+  "feeds": [
+    {
+      "source": "https://news.polymarket.com/feed",
+      "feed_url": "https://news.polymarket.com/feed",
+      "title": "",
+      "saved": 2,
+      "method": "feed"
+    }
+  ],
+  "post_count": 2,
+  "fetched": "2026-10-10T13:15:00Z"
+}
